@@ -17,90 +17,90 @@
     <div id="example"></div>
     <script type="text/babel">
       class Clock extends React.Component {
-			  constructor(props) {
-			    super(props);
-			    var listData=[{name:"用户名1",age:"30",sex:"男"},{name:"用户名2",age:"24",sex:"女"}];
-			    this.state = {
-			    	list: listData,
-			    	name : "",
-			    	age : "",
-			    	sex : ""
-			    };
-			    this.handleClickAdd = this.handleClickAdd.bind(this);
-			    this.handleClickDelete = this.handleClickDelete.bind(this);
-			    this.handleChange = this.handleChange.bind(this);
-			    this.handleInputChange = this.handleInputChange.bind(this);
-			    this.handleClearForm = this.handleClearForm.bind(this);
-			    
-			  }
-			  //数组赋值
-			  handleChange(data) {
-            this.setState({
-                list:data
+	  constructor(props) {
+	    super(props);
+	    var listData=[{name:"用户名1",age:"30",sex:"男"},{name:"用户名2",age:"24",sex:"女"}];
+	    this.state = {
+		list: listData,
+		name : "",
+		age : "",
+		sex : ""
+	    };
+	    this.handleClickAdd = this.handleClickAdd.bind(this);
+	    this.handleClickDelete = this.handleClickDelete.bind(this);
+	    this.handleChange = this.handleChange.bind(this);
+	    this.handleInputChange = this.handleInputChange.bind(this);
+	    this.handleClearForm = this.handleClearForm.bind(this);
+
+	  }
+ 	 //数组赋值
+ 	 handleChange(data) {
+		this.setState({
+		list:data
             });
         }
-			  //form表单赋值
-			  handleInputChange(event){
-			  		 const value =event.target.value;
-				     const name = event.target.name;
-				     this.setState({
-				      	[name]: value
-				     });
-			  }
+  	//form表单赋值
+  	handleInputChange(event){
+	    const value =event.target.value;
+	    const name = event.target.name;
+	    this.setState({
+		[name]: value
+	     });
+  	}
         //点击添加
-		   handleClickAdd(event) {
-	   			var list=this.state.list;
-	   			var name = this.state.name;
-	   			var age = this.state.age;
-	   			var sex = this.state.sex;
-		   		if(name=="" || age=="" || sex==""){
-		   				console.log("值不能为空哦");
-		   				event.preventDefault();
-		   			}else{
-	   				  list.push(
-	                {
-	                name:name,
-	                age:age,
-	                sex:sex
-	                }
-             	);
-				      this.handleChange(list);
-					    this.handleClearForm(event);
-			  		}
-		  }
-		  //删除
-	  	handleClickDelete(event,index) {
-   			var list=this.state.list;
-   			list.splice(index,1);
-   			this.handleChange(list);
-	    }
-		  //添加完数据 清空值 
-			handleClearForm(event) {
-		    event.preventDefault();
-		    this.setState({
-		      	name : "",
-			    	age : "",
-			    	sex : ""
-		    });       
+   	handleClickAdd(event) {
+		var list=this.state.list;
+		var name = this.state.name;
+		var age = this.state.age;
+		var sex = this.state.sex;
+		if(name=="" || age=="" || sex==""){
+			console.log("值不能为空哦");
+			event.preventDefault();
+		}else{
+		  list.push(
+			{
+			name:name,
+			age:age,
+			sex:sex
+			}
+		  )
+	         this.handleChange(list);
+		   this.handleClearForm(event);
+	         }
+        }
+  	//删除
+	handleClickDelete(event,index) {
+		var list=this.state.list;
+		list.splice(index,1);
+		this.handleChange(list);
+	}
+  	//添加完数据 清空值 
+	handleClearForm(event) {
+    		event.preventDefault();
+    		this.setState({
+			name : "",
+			age : "",
+			sex : ""
+    		});       
   	}    
-	 //页面值
-	  render() {
-	  	//(e,index)=>this.handleClickDelete()  参数=>返回值
+	//页面值
+	render() {
+	  //(e,index)=>this.handleClickDelete()  参数=>返回值
 	    return (
-	    				<form>
-				     <table cellSpacing="0px" cellPadding="5">
-				     	<tbody>
-				     		<tr>
-				      		<td><input type="text"  value={this.state.name} onChange={this.handleInputChange}
-						   		name="name" placeholder="请输入姓名"/></td>
-						      <td><input type="text"  value={this.state.age} onChange={this.handleInputChange}
-								   name="age" placeholder="请输入年龄"/></td>
-						      <td><input type="text"  value={this.state.sex} onChange={this.handleInputChange}
-								   name="sex" placeholder="请输入性别"/></td>
-						      <td><a href="###" onClick={this.handleClickAdd} className="add">添加</a></td>
-				      </tr>
-		          <TableData list={this.state.list} handleClickDelete={this.handleClickDelete}/>
-		          </tbody>
+		<form>
+	    	   <table cellSpacing="0px" cellPadding="5">
+		     <tbody>
+			<tr>
+			<td><input type="text"  value={this.state.name} onChange={this.handleInputChange}
+					name="name" placeholder="请输入姓名"/></td>
+			      <td><input type="text"  value={this.state.age} onChange={this.handleInputChange}
+					   name="age" placeholder="请输入年龄"/></td>
+			      <td><input type="text"  value={this.state.sex} onChange={this.handleInputChange}
+					   name="sex" placeholder="请输入性别"/></td>
+			      <td><a href="###" onClick={this.handleClickAdd} className="add">添加</a></td>
+	      		</tr>
+  			<TableData list={this.state.list} handleClickDelete={this.handleClickDelete}/>
+  		    </tbody>
 	         </table>
 	         </form>
 	    );
@@ -109,36 +109,35 @@
   //表单数据展示模板
   class TableData extends React.Component {
   	 constructor(props) {
-			  super(props);
-		 }
+		super(props);
+	}
   	handleClickDelete = (event,index) => { // 此处使用箭头函数，避免bind绑定
-        this.props.handleClickDelete(event,index);
-    }
-  	//页面值
-	  render() {
-	  	//(e,index)=>this.handleClickDelete()  参数=>返回值
+        	this.props.handleClickDelete(event,index);
+    	}
+	//页面值
+	render() {
 	    return (
-           this.props.list.map((item,index) => {
-             return <tr key = {index}>
-             		<td>{item.name}</td>
-				        <td>{item.age}</td>
-				      	<td>{item.sex}</td>
-				      	<td><a href="###" onClick={()=>this.handleClickDelete(event,index)}>删除</a></td>
-				      </tr>
-           })
+	  	 this.props.list.map((item,index) => {
+	     		return
+			<tr key = {index}>
+				<td>{item.name}</td>
+				<td>{item.age}</td>
+				<td>{item.sex}</td>
+				<td><a href="###" onClick={()=>this.handleClickDelete(event,index)}>删除</a></td>
+		      </tr>
+	  	 })
 	    );
 	  }
   	
   }
   //检查list是否是数组
- 	TableData.propTypes={
+ TableData.propTypes={
     list: PropTypes.array
   }
-	ReactDOM.render( 
-		<Clock />,
-		document.getElementById('example') 
-	);
-		      
-  </script>
+ ReactDOM.render( 
+	<Clock />,
+	document.getElementById('example') 
+  );
+ </script>
   </body>
 </html>
