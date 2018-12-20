@@ -5,13 +5,13 @@
     <title>React 实例表单提交</title>
     <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
     <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js" > </script >
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"> </script >
     <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
   
   </head>
   <style>
   	table,table tr th, table tr td { border:1px solid #9E9E9E; }
-    table {text-align: center; border-collapse: collapse;}
+  	table {text-align: center; border-collapse: collapse;}
   </style>
   <body>
     <div id="example"></div>
@@ -120,10 +120,10 @@
 	  	 this.props.list.map((item,index) => {
 	     		return
 			<tr key = {index}>
-				<td>{item.name}</td>
-				<td>{item.age}</td>
-				<td>{item.sex}</td>
-				<td><a href="###" onClick={()=>this.handleClickDelete(event,index)}>删除</a></td>
+			<td>{item.name}</td>
+			<td>{item.age}</td>
+			<td>{item.sex}</td>
+			<td><a href="###" onClick={()=>this.handleClickDelete(event,index)}>删除</a></td>
 		      </tr>
 	  	 })
 	    );
