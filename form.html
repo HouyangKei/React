@@ -90,22 +90,14 @@
 		<form>
 	    	   <table cellSpacing="0px" cellPadding="5">
 		     <tbody>
-			<tr>
-			<td><input type="text"  value={this.state.name} onChange={this.handleInputChange}
-					name="name" placeholder="请输入姓名"/></td>
-			      <td><input type="text"  value={this.state.age} onChange={this.handleInputChange}
-					   name="age" placeholder="请输入年龄"/></td>
-			      <td><input type="text"  value={this.state.sex} onChange={this.handleInputChange}
-					   name="sex" placeholder="请输入性别"/></td>
-			      <td><a href="###" onClick={this.handleClickAdd} className="add">添加</a></td>
-	      		</tr>
+			<FormData state={this.state} handleClickAdd={this.handleClickAdd} handleInputChange={this.handleInputChange}/>
   			<TableData list={this.state.list} handleClickDelete={this.handleClickDelete}/>
   		    </tbody>
 	         </table>
 	         </form>
 	    );
-	  }
 	}
+   }
   //表单数据展示模板
   class TableData extends React.Component {
   	 constructor(props) {
@@ -134,6 +126,33 @@
  TableData.propTypes={
     list: PropTypes.array
  }
+  //添加数据模板
+ class FormData extends React.Component {
+  	 constructor(props) {
+		super(props);
+	 }
+  	handleClickAdd = (event) => { // 此处使用箭头函数，避免bind绑定
+       		this.props.handleClickAdd(event);
+    	}
+  	handleInputChange = (event) => { // 此处使用箭头函数，避免bind绑定
+        	this.props.handleInputChange(event);
+   	 }
+	//页面值
+	render() {
+	    return (
+	   	<tr>
+		      <td><input type="text"  value={this.props.state.name} onChange={this.handleInputChange}
+				name="name" placeholder="请输入姓名"/></td>
+		      <td><input type="text"  value={this.props.state.age} onChange={this.handleInputChange}
+				   name="age" placeholder="请输入年龄"/></td>
+		      <td><input type="text"  value={this.props.state.sex} onChange={this.handleInputChange}
+				   name="sex" placeholder="请输入性别"/></td>
+		      <td><a href="###" onClick={this.handleClickAdd} className="add">添加</a></td>
+		</tr>
+	    );
+	}
+  	
+ } 
  ReactDOM.render( 
 	<Clock />,
 	document.getElementById('example') 
